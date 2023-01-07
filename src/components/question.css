@@ -1,0 +1,22 @@
+.questionContainer ul .question:hover {
+  position: relative;
+  background-color: rgb(62, 94, 202);
+  color: white;
+}
+
+.questionContainer ul .correct {
+  position: relative;
+  background-color: rgb(53, 212, 53);
+  pointer-events: none;
+}
+
+.questionContainer ul .incorrect {
+  position: relative;
+  background-color: rgb(206, 58, 58);
+  pointer-events: none;
+}
+
+.questionContainer ul .question.disable {
+  pointer-events: none;
+  opacity: 0.68;
+}
