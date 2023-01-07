@@ -1,3 +1,9 @@
+/* Quiz App
+
+   Author: David Bishop
+   Creation Date: November, 2022
+*/
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import StartScreen from "./pages/StartScreen";

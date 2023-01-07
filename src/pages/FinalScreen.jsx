@@ -29,7 +29,6 @@ const FinalScreen = () => {
   const replay = () => {
     dispatch(SET_INDEX(0));
     dispatch(SET_SCORE(0));
-    dispatch(SET_ACCESS(false));
     navigate("/gameStart");
   };
 

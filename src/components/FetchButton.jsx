@@ -35,9 +35,9 @@ const FetchButton = (props) => {
   };
 
   const handleQuery = async () => {
-    // specifies the number of questions that we want.
+    // Specifies the number of questions that we want.
     let apiURL = `https://opentdb.com/api.php?amount=${questionAmount}`;
-    // only add the rest of the parameters if they aren't "all".
+    // Only add the rest of the parameters if they aren't "all".
     if (questionCategory.length) {
       apiURL = apiURL.concat(`&category=${questionCategory}`);
     }

@@ -1,8 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  // Doesn't need to be inclosed like this.
-  // TODO: Selectors is getting state.
   initOptions: {
     loading: false,
     question_category: "",
