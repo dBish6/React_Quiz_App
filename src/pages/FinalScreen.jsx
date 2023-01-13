@@ -1,23 +1,29 @@
 import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import FetchButton from "../components/FetchButton";
+// *Component Imports*
+import FinalOptions from "../components/FinalOptions";
+
+// *Redux Imports*
+import { useSelector, useDispatch } from "react-redux";
+import { SET_FINAL_SCORE } from "../redux/optionsSlice";
 import {
-  SET_INDEX,
-  SET_SCORE,
-  SET_QUESTIONS,
-  SET_ACCESS,
-} from "../redux/optionsSlice";
-import { selectAccessKey, selectScore } from "../redux/selectors";
+  selectAccessKey,
+  selectScore,
+  selectQuestions,
+} from "../redux/selectors";
 
 const FinalScreen = () => {
-  const score = useSelector(selectScore);
   const accessKey = useSelector(selectAccessKey);
+  const score = useSelector(selectScore);
+  const questions = useSelector(selectQuestions);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
+    // To get final score on render.
+    dispatch(SET_FINAL_SCORE({ score: score, questions: questions }));
+
     if (!accessKey) {
       navigate("/");
       setTimeout(() => {
@@ -26,29 +32,9 @@ const FinalScreen = () => {
     }
   }, [navigate]);
 
-  const replay = () => {
-    dispatch(SET_INDEX(0));
-    dispatch(SET_SCORE(0));
-    navigate("/gameStart");
-  };
-
-  const reset = () => {
-    dispatch(SET_QUESTIONS([]));
-    dispatch(SET_INDEX(0));
-    dispatch(SET_SCORE(0));
-    dispatch(SET_ACCESS(false));
-    navigate("/");
-  };
-
   return (
-    <div>
-      <h3>Final Score: {score}</h3>
-      <h4>Start Again?</h4>
-      <div>
-        <button onClick={() => replay()}>Try again</button>
-        <FetchButton text="Fetch new Questions" />
-      </div>
-      <button onClick={() => reset()}>Back to settings</button>
+    <div className="finalContainer">
+      <FinalOptions />
     </div>
   );
 };

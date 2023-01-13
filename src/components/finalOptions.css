@@ -1,0 +1,118 @@
+/* Designer: David Bishop
+   Final Options
+*/
+
+.finalContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem;
+  background-color: #dfdfdf;
+}
+
+@media screen and (min-width: 450px) {
+  .finalContainer {
+    min-width: 397px;
+    max-height: 236px;
+    padding: 1.5rem 3rem;
+  }
+}
+
+.finalContainer h2 {
+  font-family: "Mabry Pro";
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #363636;
+  margin-bottom: 1rem;
+}
+
+.finalContainer h3 {
+  font-family: "Mabry Pro";
+  font-size: 18px;
+  font-weight: 500;
+  color: #363636;
+  margin-bottom: 0.7rem;
+}
+
+.finalContainer div {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.finalContainer button {
+  background-color: #363636;
+  box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.25);
+  border-radius: 6px;
+  cursor: pointer;
+
+  justify-self: center;
+  width: 100%;
+  transition: 0.2s ease;
+}
+
+.finalContainer button .btnTop {
+  font-family: "Mabry Pro";
+  font-size: 14px;
+  border: 1px solid #363636;
+  border-radius: 6px;
+  background-color: #eaeaea;
+  font-weight: 500;
+  color: var(--primary700);
+
+  display: block;
+  padding: 0.75em 1.5em;
+  transform: translateY(-0.2em);
+  transition: 0.2s ease transform;
+}
+
+.finalContainer div button,
+.finalContainer div button .btnTop {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 42px;
+  padding: 0;
+}
+
+.finalContainer div button:nth-child(1),
+.finalContainer div button:nth-child(1) .btnTop {
+  min-width: 102.467px;
+}
+
+.finalContainer div button:nth-child(2),
+.finalContainer div button:nth-child(2) .btnTop {
+  min-width: 179px;
+}
+
+@media screen and (max-width: 400px) {
+  .finalContainer div button:nth-child(1),
+  .finalContainer div button:nth-child(1) .btnTop,
+  .finalContainer div button:nth-child(2),
+  .finalContainer div button:nth-child(2) .btnTop {
+    width: 100%;
+  }
+  .finalContainer div {
+    flex-direction: column;
+    width: 100%;
+  }
+}
+
+.finalContainer button:hover {
+  box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.25);
+}
+
+.finalContainer button:hover .btnTop {
+  transform: translateY(-0.33em);
+  border-width: 2px;
+  font-weight: 700;
+}
+
+.finalContainer button:active {
+  box-shadow: 0px 3.5px 8px rgba(0, 0, 0, 0.25);
+}
+
+.finalContainer button:active .btnTop {
+  transform: translateY(0);
+  background-color: #f1f1f1;
+}

@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
+// *Redux Imports*
 import { useSelector, useDispatch } from "react-redux";
 import {
   CHANGE_LOADING,
@@ -8,7 +9,6 @@ import {
   SET_INDEX,
   SET_SCORE,
 } from "../redux/optionsSlice";
-
 import {
   selectCategory,
   selectDifficulty,
@@ -73,7 +73,7 @@ const FetchButton = (props) => {
         navigate("/gameStart");
       }}
     >
-      {props.text}
+      <span className="btnTop">{props.text}</span>
     </button>
   );
 };

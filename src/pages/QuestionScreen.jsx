@@ -1,10 +1,12 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
+// *Component Imports*
+import Question from "../components/Question";
+
+// *Redux Imports*
 import { useSelector } from "react-redux";
 import { selectAccessKey } from "../redux/selectors";
-
-import Question from "../components/Question";
 
 const QuestionScreen = () => {
   const accessKey = useSelector(selectAccessKey);
@@ -20,9 +22,9 @@ const QuestionScreen = () => {
   }, [navigate]);
 
   return (
-    <div className="questionContainer">
+    <>
       <Question />
-    </div>
+    </>
   );
 };
 

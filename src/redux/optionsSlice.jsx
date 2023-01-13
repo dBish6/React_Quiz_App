@@ -11,6 +11,7 @@ const initialState = {
   questions: [],
   index: 0,
   score: 0,
+  final_score: 0,
   accessKey: false,
 };
 const optionsSlice = createSlice({
@@ -41,6 +42,11 @@ const optionsSlice = createSlice({
     SET_SCORE: (state, action) => {
       state.score = action.payload;
     },
+    SET_FINAL_SCORE: (state, action) => {
+      state.final_score = Math.floor(
+        (action.payload.score / action.payload.questions.length) * 100
+      );
+    },
     SET_ACCESS: (state, action) => {
       state.accessKey = action.payload;
     },
@@ -57,6 +63,7 @@ export const {
   SET_QUESTIONS,
   SET_INDEX,
   SET_SCORE,
+  SET_FINAL_SCORE,
   SET_ACCESS,
 } = optionsSlice.actions;
 // Exports the slice's reducer.

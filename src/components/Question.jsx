@@ -1,5 +1,11 @@
 import { useState, useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+
+// *Design Imports*
+import { MdArrowBack } from "react-icons/md";
+import "./question.css";
+
+// *Redux Imports*
 import { useSelector, useDispatch } from "react-redux";
 import {
   SET_QUESTIONS,
@@ -9,17 +15,13 @@ import {
 } from "../redux/optionsSlice";
 import {
   selectLoading,
-  selectQuestion,
+  selectQuestions,
   selectIndex,
   selectScore,
 } from "../redux/selectors";
-import "./question.css";
 
-const decodeHTML = (html) => {
-  const txt = document.createElement("textarea");
-  txt.innerHTML = html;
-  return txt.value;
-};
+// Utility Import
+import DecodeHTML from "../utils/DecodeHtml";
 
 const Question = () => {
   const [options, setOptions] = useState([]);
@@ -28,26 +30,27 @@ const Question = () => {
   const [selectedCorrectAnswer, setSelectedCorrectAnswer] = useState(null);
   const [questionLoading, toggleQuestionLoading] = useState(false);
   const [currentQuestion, setCurrentQuestion] = useState("");
+
   const [disabled, toggleDisabled] = useState(false);
+
   const loading = useSelector(selectLoading);
   const questionIndex = useSelector(selectIndex);
   const score = useSelector(selectScore);
-  const encodedQuestions = useSelector(selectQuestion);
+  const encodedQuestions = useSelector(selectQuestions);
 
   const navigate = useNavigate();
   const questionRef = useRef(null);
   const dispatch = useDispatch();
 
-  // Allows to use the question in the DOM.
   useEffect(() => {
     toggleQuestionLoading(true);
-    // Decodes questions sent from API.
+    // Decodes questions sent from API to keep the questions coming.
     const decodedQuestions = encodedQuestions.map((q) => {
       return {
         ...q,
-        question: decodeHTML(q.question),
-        correct_answer: decodeHTML(q.correct_answer),
-        incorrect_answers: q.incorrect_answers.map((a) => decodeHTML(a)),
+        question: DecodeHTML(q.question),
+        correct_answer: DecodeHTML(q.correct_answer),
+        incorrect_answers: q.incorrect_answers.map((a) => DecodeHTML(a)),
       };
     });
     toggleQuestionLoading(false);
@@ -114,16 +117,22 @@ const Question = () => {
     dispatch(SET_INDEX(0));
     dispatch(SET_SCORE(0));
     dispatch(SET_ACCESS(false));
-    navigate("/");
   };
 
   return (
     <>
       {questionLoading || loading ? (
-        <p>Loading Questions...</p>
+        <p className="questionLoader">Loading Questions...</p>
       ) : (
-        <>
-          <p>Question {questionIndex + 1}</p>
+        <div
+          className={
+            disabled ? "questionContainer" : "questionContainer animate"
+          }
+        >
+          <Link to="/" className="arrowBack" onClick={() => reset()}>
+            <MdArrowBack />
+          </Link>
+          <h1>Question {questionIndex + 1}</h1>
           <h3>{currentQuestion}</h3>
           <ul>
             {options.map((option, i) => (
@@ -145,11 +154,19 @@ const Question = () => {
               </li>
             ))}
           </ul>
-          <div>
-            Score: {score} / {questions.length}
+          <div className="scoreContainer">
+            <p>
+              Score: {score} / {questions.length}
+            </p>
+            <a
+              href="https://opentdb.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              opentdb.com
+            </a>
           </div>
-          <button onClick={() => reset()}>Quit</button>
-        </>
+        </div>
       )}
     </>
   );
