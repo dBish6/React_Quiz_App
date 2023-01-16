@@ -22,7 +22,6 @@ const Settings = () => {
   // Allows to extract data from the Redux store.
   const loading = useSelector(selectLoading);
   const questionAmount = useSelector(selectAmount);
-
   const navigate = useNavigate();
   const dispatch = useDispatch();
 

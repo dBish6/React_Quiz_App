@@ -30,7 +30,7 @@ const FinalScreen = () => {
         alert("You're not allowed on this page yet, sneaky bugger:)");
       }, 1000);
     }
-  }, [navigate]);
+  }, [accessKey, navigate]);
 
   return (
     <div className="finalContainer">

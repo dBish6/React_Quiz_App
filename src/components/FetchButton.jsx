@@ -56,7 +56,7 @@ const FetchButton = (props) => {
       // console.log(jsonData.results);
 
       setQuestions(jsonData.results);
-      // Resets everything fetch button is pressed.
+      // Resets everything when fetch button is pressed.
       dispatch(SET_INDEX(0));
       dispatch(SET_SCORE(0));
       setLoading(false);

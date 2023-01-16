@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-// *Component Imports*
+// *Component Import*
 import Question from "../components/Question";
 
 // *Redux Imports*
@@ -19,7 +19,7 @@ const QuestionScreen = () => {
         alert("You're not allowed on this page yet, sneaky bugger:)");
       }, 1000);
     }
-  }, [navigate]);
+  }, [accessKey, navigate]);
 
   return (
     <>

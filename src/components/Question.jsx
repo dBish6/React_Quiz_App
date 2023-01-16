@@ -37,10 +37,9 @@ const Question = () => {
   const questionIndex = useSelector(selectIndex);
   const score = useSelector(selectScore);
   const encodedQuestions = useSelector(selectQuestions);
-
   const navigate = useNavigate();
-  const questionRef = useRef(null);
   const dispatch = useDispatch();
+  const questionRef = useRef(null);
 
   useEffect(() => {
     toggleQuestionLoading(true);

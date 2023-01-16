@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router-dom";
 
-// *Component Imports*
-import FetchButton from "../components/FetchButton";
-
 // *Design Imports*
 import "./finalOptions.css";
+
+// *Component Imports*
+import FetchButton from "../components/FetchButton";
 
 // *Redux Imports*
 import { useSelector, useDispatch } from "react-redux";
