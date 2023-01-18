@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 // *Component Import*
 import FetchButton from "./FetchButton";
@@ -34,14 +35,15 @@ const Settings = () => {
       try {
         handleLoadingChange(true);
         // Fetches question categories from https://opentdb.com/.
-        const res = await fetch("https://opentdb.com/api_category.php");
-        const jsonData = await res.json();
+        const res = await axios({
+          method: "GET",
+          url: "https://opentdb.com/api_category.php",
+        });
+        // console.log(res.data);
 
         handleLoadingChange(false);
-        if (!loading) {
-          // console.log(jsonData);
-          // console.log(jsonData.trivia_categories);
-          setOptions(jsonData.trivia_categories);
+        if (!loading && res.status === 200) {
+          setOptions(res.data.trivia_categories);
         }
       } catch (error) {
         console.error(error);

@@ -14,6 +14,7 @@ import {
   selectDifficulty,
   selectType,
   selectAmount,
+  selectLoading,
 } from "../redux/selectors";
 
 const FetchButton = (props) => {
@@ -22,6 +23,7 @@ const FetchButton = (props) => {
   const questionDifficulty = useSelector(selectDifficulty);
   const questionType = useSelector(selectType);
   const questionAmount = useSelector(selectAmount);
+  const loading = useSelector(selectLoading);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -51,15 +53,19 @@ const FetchButton = (props) => {
       setLoading(true);
       dispatch(SET_ACCESS(true));
       // console.log(apiURL);
-      const res = await fetch(apiURL);
-      const jsonData = await res.json();
-      // console.log(jsonData.results);
+      const res = await axios({
+        method: "GET",
+        url: apiURL,
+      });
+      // console.log(res.data);
 
-      setQuestions(jsonData.results);
       // Resets everything when fetch button is pressed.
       dispatch(SET_INDEX(0));
       dispatch(SET_SCORE(0));
       setLoading(false);
+      if (!loading && res.status === 200) {
+        setQuestions(res.data.results);
+      }
     } catch (error) {
       console.error(error);
     }
