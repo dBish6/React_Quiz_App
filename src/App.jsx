@@ -18,7 +18,9 @@ import Error404 from "./pages/errors/Error404";
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter
+      basename={process.env.NODE_ENV === "production" ? "/React_Quiz_App" : ""}
+    >
       <main>
         <Routes>
           <Route path="/" element={<StartScreen />} />
